@@ -1,0 +1,38 @@
+{
+  "name": "secure-file-sharing-system",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.850.0",
+    "@aws-sdk/s3-request-presigner": "^3.872.0",
+    "agenda": "^5.0.0",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "clamscan": "^2.4.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.3",
+    "multer": "^2.0.1",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^7.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
