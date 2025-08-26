@@ -1,73 +1,104 @@
-File Upload and Email Notification System
-📌 Project Overview
+📁 FileVault API
 
-This project is a Node.js + Express application that allows users to:
+    A secure file sharing and storage API built with Node.js, Express, MongoDB, and AWS S3.
+    Supports secure uploads, virus scanning, sharing, access logging, email notifications, and auto-deletion.
 
-Upload files (stored locally or on AWS S3).
-
-Get notified via email (Gmail SMTP) once their file is successfully uploaded.
-
-Retrieve and view all files they have uploaded.
-
-It’s designed as a starter boilerplate for building file-sharing or cloud-storage style apps.
-
-✨ Features
-
-File upload using Multer middleware.
-
-Email notifications using Nodemailer (Gmail SMTP).
-
-Secure environment variables using .env.
-
-Option to store files either:
-
-Locally on the server
-
-On AWS S3 bucket
-
-API endpoint to fetch all uploaded files for a user.
-
-Safe handling of secrets (via .gitignore).
-
-🛠️ Tech Stack
-
-Backend: Node.js, Express
-
-File Upload: Multer / Multer-S3
-
-Cloud Storage: AWS S3 (optional)
-
-Email Service: Nodemailer (Gmail SMTP)
-
-Database: MongoDB (for storing file metadata)
+    This project provides a complete solution for user authentication, file management, secure sharing with expiring links, virus scanning, 
+    and a full audit trail.
 
 
-📬 API Endpoints
-Upload a File
+🚀 Features
 
-POST /upload
+    🔐 User Authentication – Secure user registration and login using JSON Web Tokens (JWT).
+    
+    📤 File Uploads – Upload files locally or to AWS S3. Seamlessly uploads files directly to AWS S3 for scalable, durable, and secure             storage.
+    
+    🛡 Virus Scanning – Scan files before saving using ClamAV integration. Asynchronously scans every uploaded file for malware using              ClamAV and a background job queue, quarantining infected files.
+    
+    📩 Email Notifications – Send upload, access, and deletion alerts via Nodemailer. Automatically sends email notifications to the file          owner upon access, upload, and deletion.
+    
+    🔗 File Sharing – Share files via user-to-user or secure public links. Generate unique shareable links for any file. Set custom                expiration times (e.g., "in 5 days and 3 hours"). Enforce a maximum number of downloads.
+    
+    📥 File Downloads – Secure, logged downloads with access validation. Authenticated users can access their files directly. Public               sharing is handled via temporary, secure S3 Pre-signed URLs.
+    
+    ⏳ Auto Deletion – Time-based file expiry and scheduled clean-up. Schedule files for automatic deletion at a specific future time using        a persistent job scheduler.
+    
+    📜 Access Logs – Maintain history of file access events. Logs every file access, tracking who, what, when, and from where (IP and              Geolocation).
 
-Uploads a file and sends email notification.
 
-Get All Files Uploaded by a User
+🛠 Tech Stack
 
-GET /files/:userId
+    Backend: Node.js, Express.js
+    
+    Database: MongoDB (Mongoose ORM)
 
-Returns list of files uploaded by the given user.
+    Authentication: JSON Web Token (JWT), bcrypt.js
+    
+    Storage: Local FS, AWS S3
 
-⚠️ Security Notes
+    File Handling: Multer
 
-Use a Gmail App Password (not your real Gmail password).
+    Virus Scanning: ClamAV
+    
+    Email: Nodemailer (SMTP - Gmail/Custom)
+    
+    Job Queues: Agenda.js / BullMQ with Redis (for auto-deletion and asynchronous tasks)
 
-Always add .env and node_modules/ to .gitignore.
+    Geolocation: IP-API.com
 
-📌 Future Enhancements
 
-Add JWT authentication for secure file access.
+📌 API Endpoints
 
-Enable file download links with signed URLs.
+    Authentication:
+    
+        POST /auth/register → Register new user
+        POST /auth/login → Login and get JWT
+        POST /auth/logout → Logout and delete the JWT
+    
+    File Uploads:
+    
+        POST /upload/local → Upload file to local server
+        POST /upload/cloud → Upload file to AWS S3
+    
+    File Downloads:
+    
+        GET /download/file/:id → Download file securely
+    
+    File Sharing:
+    
+        POST /share/file → Share file with another user
+        POST /share-link/:fileId → Generate a secure shareable link
+    
+    File Deletion:
+    
+        Local file deletion
+        DELETE /delete/local/:fileId → Delete local uploaded files
+        
+        Cloud File deletion
+        DELETE /delete/cloud/:fileId → Delete cloud uploaded files
+    
+    File Management:
+    
+        Files shared:
+        GET /shared/files → Get the files shared by the user
+        
+        Files received:
+        GET /received/files → Get the files received by the user
+        
+        Files uploaded:
+        GET /files-uploaded/ → Get the files uploaded by the user
 
-Add file size & type restrictions.
+✅ Future Improvements
 
-Build a frontend with React.# Secure-File-Sharing-Application
-# Secure-file-sharing
+    Add two-factor authentication for critical operations.
+    
+    Enable file previews for common types (PDF, images).
+    
+    Implement rate limiting & IP-based access controls.
+    
+    Build a React frontend for user-friendly interaction.
+
+👨‍💻 Author
+
+    Sathwik Reddy
+    💼 Backend Developer | MERN Stack | Security Enthusiast
