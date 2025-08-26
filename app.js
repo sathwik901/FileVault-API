@@ -30,6 +30,14 @@ app.use(cookieParser());
 
 app.set('trust proxy', true);
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "📁 FileVault API is running!",
+    docs: "https://github.com/sathwik901/FileVault-API",
+    author: "Sathwik Reddy"
+  });
+});
+
 app.use('/auth', authRoute)
 
 app.use('/upload', localFileUploadRoute);
