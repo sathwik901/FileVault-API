@@ -87,6 +87,14 @@
         
         Files uploaded:
         GET /files-uploaded/ → Get the files uploaded by the user
+        
+
+📄 Example cURL (Signup)
+
+    curl -X POST https://your-app.onrender.com/auth/register \
+    -H "Content-Type: application/json" \
+    -d '{"name":"John","email":"john@example.com","password":"mypassword"}'
+
 
 ✅ Future Improvements
 
